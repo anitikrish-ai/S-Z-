@@ -25,10 +25,12 @@ export interface ComponentStyle {
   maxWidth?: string;
   maxHeight?: string;
   // Spacing
+  margin?: string;
   marginTop?: string;
   marginRight?: string;
   marginBottom?: string;
   marginLeft?: string;
+  padding?: string;
   paddingTop?: string;
   paddingRight?: string;
   paddingBottom?: string;
@@ -37,9 +39,24 @@ export interface ComponentStyle {
   backgroundColor?: string;
   color?: string;
   borderRadius?: string;
+  border?: string;
   borderWidth?: string;
   borderStyle?: 'solid' | 'dashed' | 'dotted' | 'none';
   borderColor?: string;
+  borderTop?: string;
+  borderTopWidth?: string;
+  borderTopColor?: string;
+  borderTopStyle?: string;
+  borderBottom?: string;
+  borderBottomWidth?: string;
+  borderBottomColor?: string;
+  borderBottomStyle?: string;
+  borderLeft?: string;
+  borderLeftWidth?: string;
+  borderLeftColor?: string;
+  borderRight?: string;
+  borderRightWidth?: string;
+  borderRightColor?: string;
   boxShadow?: string;
   opacity?: number;
   overflow?: 'visible' | 'hidden' | 'scroll' | 'auto';
@@ -56,16 +73,18 @@ export interface ComponentStyle {
   transition?: string;
   // Custom CSS string
   customCss?: string;
+  // Arbitrary CSS property extension
+  [key: string]: any;
 }
 
 export interface UIElement {
   id: string;
   name: string;
-  type: string; // e.g. 'container', 'button', 'card', 'navbar', etc.
+  type: string;
   category: ComponentCategory;
-  tag: string; // HTML tag: 'div', 'button', 'h1', 'p', 'nav', 'section', etc.
-  content?: string; // Text content or innerHTML
-  attributes?: Record<string, string>; // e.g. { href: '/', src: '...', placeholder: '...' }
+  tag: string;
+  content?: string;
+  attributes?: Record<string, string>;
   styles: ComponentStyle;
   hoverStyles?: Partial<ComponentStyle>;
   responsiveOverrides?: {
@@ -73,7 +92,7 @@ export interface UIElement {
     tablet?: Partial<ComponentStyle>;
   };
   children: UIElement[];
-  animationClipId?: string; // Links to animation clip
+  animationClipId?: string;
   isReusable?: boolean;
   reusableSourceId?: string;
 }
@@ -87,4 +106,3 @@ export interface WebPage {
   description: string;
   rootElement: UIElement;
 }
-

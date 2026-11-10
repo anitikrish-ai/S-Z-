@@ -494,7 +494,7 @@ export const useProjectStore = create<ProjectStoreState>((set, get) => {
         name,
         route,
         isHome: false,
-        title: `${name} | CSS Studio`,
+        title: `${name} | SŌZŌ Studio`,
         description: `Page ${name}`,
         rootElement: {
           id: generateId('root'),

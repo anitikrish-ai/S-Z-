@@ -4,52 +4,13 @@ import { AnimationClip } from '../types/animation';
 
 export function styleToCssProperties(styles: ComponentStyle): Record<string, string | number> {
   const result: Record<string, string | number> = {};
+  const ignoredKeys = new Set(['customCss']);
 
-  if (styles.display) result.display = styles.display;
-  if (styles.flexDirection) result.flexDirection = styles.flexDirection;
-  if (styles.justifyContent) result.justifyContent = styles.justifyContent;
-  if (styles.alignItems) result.alignItems = styles.alignItems;
-  if (styles.flexWrap) result.flexWrap = styles.flexWrap;
-  if (styles.gridTemplateColumns) result.gridTemplateColumns = styles.gridTemplateColumns;
-  if (styles.gridTemplateRows) result.gridTemplateRows = styles.gridTemplateRows;
-  if (styles.gap) result.gap = styles.gap;
-
-  if (styles.width) result.width = styles.width;
-  if (styles.height) result.height = styles.height;
-  if (styles.minWidth) result.minWidth = styles.minWidth;
-  if (styles.minHeight) result.minHeight = styles.minHeight;
-  if (styles.maxWidth) result.maxWidth = styles.maxWidth;
-  if (styles.maxHeight) result.maxHeight = styles.maxHeight;
-
-  if (styles.marginTop) result.marginTop = styles.marginTop;
-  if (styles.marginRight) result.marginRight = styles.marginRight;
-  if (styles.marginBottom) result.marginBottom = styles.marginBottom;
-  if (styles.marginLeft) result.marginLeft = styles.marginLeft;
-
-  if (styles.paddingTop) result.paddingTop = styles.paddingTop;
-  if (styles.paddingRight) result.paddingRight = styles.paddingRight;
-  if (styles.paddingBottom) result.paddingBottom = styles.paddingBottom;
-  if (styles.paddingLeft) result.paddingLeft = styles.paddingLeft;
-
-  if (styles.backgroundColor) result.backgroundColor = styles.backgroundColor;
-  if (styles.color) result.color = styles.color;
-  if (styles.borderRadius) result.borderRadius = styles.borderRadius;
-  if (styles.borderWidth) result.borderWidth = styles.borderWidth;
-  if (styles.borderStyle) result.borderStyle = styles.borderStyle;
-  if (styles.borderColor) result.borderColor = styles.borderColor;
-  if (styles.boxShadow) result.boxShadow = styles.boxShadow;
-  if (styles.opacity !== undefined) result.opacity = styles.opacity;
-  if (styles.overflow) result.overflow = styles.overflow;
-  if (styles.cursor) result.cursor = styles.cursor;
-
-  if (styles.fontSize) result.fontSize = styles.fontSize;
-  if (styles.fontWeight) result.fontWeight = styles.fontWeight;
-  if (styles.lineHeight) result.lineHeight = styles.lineHeight;
-  if (styles.textAlign) result.textAlign = styles.textAlign;
-  if (styles.letterSpacing) result.letterSpacing = styles.letterSpacing;
-  if (styles.textDecoration) result.textDecoration = styles.textDecoration;
-  if (styles.fontFamily) result.fontFamily = styles.fontFamily;
-  if (styles.transition) result.transition = styles.transition;
+  for (const [key, value] of Object.entries(styles)) {
+    if (value !== undefined && value !== null && value !== '' && !ignoredKeys.has(key)) {
+      result[key] = value;
+    }
+  }
 
   return result;
 }
