@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #101114;
+  --color-surface: #18191D;
+  --color-surface-elevated: #202126;
+  --color-surface-hover: #282930;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text-main: #F5F5F7;
+  --color-text-secondary: #96969F;
+  --color-text-tertiary: #686873;
+  --color-accent: #8B7CFF;
+  --color-accent-hover: #7A6AE6;
+  --color-success: #30D18A;
+  --color-warning: #FF9F0A;
+  --color-danger: #FF5B62;
+}
+
+:root {
+  --app-bg: #101114;
+  --app-surface: #18191D;
+  --app-surface-elevated: #202126;
+  --app-surface-hover: #282930;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-border-hover: rgba(255, 255, 255, 0.16);
+  --app-text: #F5F5F7;
+  --app-text-secondary: #96969F;
+  --app-text-tertiary: #686873;
+  --app-accent: #8B7CFF;
+  --app-radius: 10px;
+  --app-radius-sm: 6px;
+  --app-radius-lg: 12px;
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-apple: 180ms;
+}
+
+/* Optional Light Mode */
+.light {
+  --app-bg: #F5F5F7;
+  --app-surface: #FFFFFF;
+  --app-surface-elevated: #F0F0F3;
+  --app-surface-hover: #E5E5EA;
+  --app-border: rgba(0, 0, 0, 0.08);
+  --app-border-hover: rgba(0, 0, 0, 0.16);
+  --app-text: #1C1C1E;
+  --app-text-secondary: #636366;
+  --app-text-tertiary: #8E8E93;
+  --app-accent: #6C5CE7;
+}
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+}
+
+/* Apple macOS Window Toolbar Drag & Header Styling */
+.macos-toolbar {
+  background-color: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Subtle Apple macOS traffic light buttons */
+.traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: opacity var(--duration-apple) var(--ease-apple);
+}
+.traffic-close { background-color: #FF5F56; border: 1px solid rgba(0,0,0,0.12); }
+.traffic-minimize { background-color: #FFBD2E; border: 1px solid rgba(0,0,0,0.12); }
+.traffic-zoom { background-color: #27C93F; border: 1px solid rgba(0,0,0,0.12); }
+
+/* Segmented Control Pill (macOS & Linear style) */
+.segmented-control {
+  background-color: var(--app-bg);
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  padding: 3px;
+  display: inline-flex;
+  gap: 2px;
+}
+
+.segmented-control-item {
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all var(--duration-apple) var(--ease-apple);
+}
+
+.segmented-control-item.active {
+  background-color: var(--app-surface-elevated);
+  color: var(--app-text);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Fields (Apple precision styling) */
+input[type="text"], input[type="number"], select {
+  transition: border-color var(--duration-apple) var(--ease-apple), box-shadow var(--duration-apple) var(--ease-apple);
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+  border-color: var(--app-accent);
+  box-shadow: 0 0 0 3px rgba(139, 124, 255, 0.18);
+  outline: none;
+}
+
+/* Custom Minimal Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Canvas Grid Pattern with Apple Precision */
+.canvas-grid-pattern {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.light .canvas-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.canvas-dots-pattern {
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+.light .canvas-dots-pattern {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+}
+
+/* Accessibility Focus Ring */
+button:focus-visible, a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--app-accent);
+}
+
+/* Reduced Motion contract */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
